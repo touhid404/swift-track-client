@@ -9,7 +9,8 @@ import Register from "../pages/authentication/Reg/Register";
 import ForgetPassword from "../pages/authentication/ForgetPass/ForgetPassword";
 import Coverage from "../pages/Coverage/Coverage";
 import PrivateRoute from "../routes/PrivateRoute";
-import SendPercel from "../pages/sendPercel/SendPercel";
+import SendPercel from "../pages/sendParcel/SendParcel";
+import DashboardLayout from "../layouts/DashboardLayout";
 
 
 export const router = createBrowserRouter([
@@ -53,4 +54,16 @@ export const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: "/dashboard",
+    element: <PrivateRoute>
+      <DashboardLayout></DashboardLayout>
+    </PrivateRoute>,
+    children:[
+      {
+        path: "",
+        
+      }
+    ]
+  }
 ]);

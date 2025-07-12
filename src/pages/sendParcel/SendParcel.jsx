@@ -3,6 +3,8 @@ import { useForm } from "react-hook-form";
 import { useLoaderData } from "react-router";
 import Swal from 'sweetalert2';
 import useAuth from "../../hooks/useAuth";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import Alert from "../shared/alert/Alert";
 
   const generateTrackingId = () => {
   const randomStr = Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -13,6 +15,8 @@ const SendParcel = () => {
 
 
     const { user} = useAuth();
+
+    const axiosSecure = useAxiosSecure();
 
 
   const serviceCenters = useLoaderData();
@@ -68,15 +72,33 @@ const SendParcel = () => {
       data.senderEmail = user.email;
       data.trackingId = generateTrackingId();
       data.creationDate = new Date().toISOString();
-      console.log("Form Data:", data);        
+      console.log("Form Data:", data);  
+      
+      
 
-      Swal.fire({
-        title: 'Success!',
-        text: 'Your parcel has been booked.',
-        icon: 'success',
-        timer: 2000,
-        showConfirmButton: false
-      });
+      axiosSecure.post('/parcels', data)
+        .then(response => {
+          console.log("Parcel booked successfully:", response.data);
+
+
+          if(response.data.insertedId) {
+            Alert('success', 'Your parcel has been booked successfully!');
+
+
+            //TODO
+            // Redirect to the payment page or show payment options
+
+          }else{
+            Alert('error', 'Failed to book the parcel. Please try again.');
+
+          }
+          
+        }
+      ).catch(() => {
+          Alert('error', 'An error occurred while booking the parcel. Please try again.');
+        })
+
+    
     }
   });
 };
