@@ -1,9 +1,11 @@
 import React from 'react';
 import logo from '../../../assets/logo.png';
+import { Link } from 'react-router';
 
 const SwiftTrackLogo = () => {
     return (
-        <div className="flex items-end">
+        <Link to='/'>
+          <div className="flex items-end">
             {/* Logo image is always visible */}
             <img className="mb-2 w-8 h-8" src={logo} alt="SwiftTrack Logo" />
             
@@ -12,6 +14,7 @@ const SwiftTrackLogo = () => {
                 Swift Track
             </p>
         </div>
+        </Link>
     );
 };
 

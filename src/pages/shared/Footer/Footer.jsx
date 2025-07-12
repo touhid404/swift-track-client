@@ -3,7 +3,7 @@ import SwiftTrackLogo from '../swiftTrackLogo/SwiftTrackLogo';
 
 const Footer = () => {
     return (
-        <footer className="footer footer-horizontal footer-center bg-neutral text-neutral-content p-10">
+        <footer className="footer my-7 footer-horizontal footer-center bg-neutral text-neutral-content p-10 rounded-xl">
   <aside>
     <SwiftTrackLogo></SwiftTrackLogo>
     <p className="font-bold">

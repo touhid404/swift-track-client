@@ -1,6 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router';
+import SocialLogin from '../social/SocialLogin';
 
 const Login = () => {
   const {
@@ -92,10 +93,7 @@ const Login = () => {
       </div>
 
       {/* Google Login */}
-      <button className="w-full flex items-center justify-center gap-2 py-2 px-4 border border-gray-300 rounded-md hover:bg-gray-100">
-        <img src="https://img.icons8.com/color/16/000000/google-logo.png" alt="Google" />
-        <span className="text-sm text-gray-700">Login with Google</span>
-      </button>
+      <SocialLogin></SocialLogin>
     </div>
   );
 };

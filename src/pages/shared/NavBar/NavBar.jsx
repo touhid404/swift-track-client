@@ -1,11 +1,16 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router';
 import SwiftTrackLogo from '../swiftTrackLogo/SwiftTrackLogo';
+import useAuth from '../../../hooks/useAuth';
 
 const NavBar = () => {
 
+
+  const {user} = useAuth();
+
     const links = <>
        <NavLink className='ml-2' to='/'>Home</NavLink>
+       <NavLink className='ml-2' to='/coverage'>Coverage</NavLink>
        <NavLink className='ml-2' to='/about'>About us</NavLink>
     </>
     return (
@@ -23,7 +28,9 @@ const NavBar = () => {
         }
       </ul>
     </div>
-    <SwiftTrackLogo></SwiftTrackLogo>
+    <div className="hidden lg:block">
+      <SwiftTrackLogo></SwiftTrackLogo>
+    </div>
   </div>
   <div className="navbar-center hidden lg:flex">
     <ul className="menu menu-horizontal px-1">
