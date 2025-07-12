@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { Link, NavLink } from 'react-router';
 import SwiftTrackLogo from '../swiftTrackLogo/SwiftTrackLogo';
 
 const NavBar = () => {
@@ -33,7 +33,7 @@ const NavBar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Button</a>
+    <button className='btn btn-primary'><Link to='/login'>Login</Link></button>
   </div>
 </div>
     );
