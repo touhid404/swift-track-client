@@ -2,19 +2,35 @@ import React from 'react';
 import { Link, NavLink } from 'react-router';
 import SwiftTrackLogo from '../swiftTrackLogo/SwiftTrackLogo';
 import useAuth from '../../../hooks/useAuth';
+import './Navbar.css'
 
 const NavBar = () => {
 
 
-  const {user} = useAuth();
+  const handleLogout = ()=>{
+    signOutUser()
+      .then(() => {
+        // Handle successful logout
+      })
+      .catch((error) => {
+        // Handle errors during logout
+        console.error("Logout error:", error);
+      });
+     
+  }
+
+
+  const {user,signOutUser} = useAuth();
 
     const links = <>
-       <NavLink className='ml-2' to='/'>Home</NavLink>
-       <NavLink className='ml-2' to='/coverage'>Coverage</NavLink>
-       <NavLink className='ml-2' to='/about'>About us</NavLink>
+       <NavLink className='ml-2 a' to='/'>Home</NavLink>
+       <NavLink className='ml-2 a' to='/coverage'>Coverage</NavLink>
+       <NavLink className='ml-2 a' to='/send-parcel'>Send parcel</NavLink>
+       <NavLink className='ml-2 a' to='/about'>About us</NavLink>
+       <NavLink className='ml-2 a' to='/about'>About us</NavLink>
     </>
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar shadow-lg bg-base-100 px-4 mt-1 rounded-xl">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -40,7 +56,14 @@ const NavBar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <button className='btn btn-primary'><Link to='/login'>Login</Link></button>
+
+     {user ? (
+         <button onClick={handleLogout} className='btn  bg-lime-400 rounded-xl'>Logout</button>
+       
+      ) : (
+         <button className='btn  bg-lime-400 rounded-xl'><Link to='/login'>Login</Link></button>
+        
+      )}
   </div>
 </div>
     );

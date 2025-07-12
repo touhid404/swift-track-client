@@ -13,9 +13,9 @@ const Coverage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center py-10 px-4">
-      <div className="bg-white w-full max-w-6xl rounded-xl shadow-md p-8">
-        <h1 className="text-4xl font-extrabold text-left text-gray-800 mb-3">
+    <div className="lg:min-h-screen flex flex-col items-center py-10 px-4">
+      <div className="bg-white w-full max-w-6xl rounded-xl shadow-md md:p-8">
+        <h1 className="text-xl lg:text-4xl font-extrabold text-left text-gray-800 mb-3">
           We are available in 64 districts
         </h1>
 

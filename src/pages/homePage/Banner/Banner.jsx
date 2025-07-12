@@ -8,7 +8,7 @@ import img3 from '../../../assets/banner/banner3.png';
 
 const Banner = () => {
     return (
-        <div data-aos="fade-up" className="w-full mx-auto  rounded-xl overflow-hidden my-11">
+        <div data-aos="fade-up" className="w-full mx-auto px-1 rounded-xl overflow-hidden my-11">
             <Carousel
                 autoPlay={true}
                 infiniteLoop={true}

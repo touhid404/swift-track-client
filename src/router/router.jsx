@@ -8,6 +8,8 @@ import Login from "../pages/authentication/Login/Login";
 import Register from "../pages/authentication/Reg/Register";
 import ForgetPassword from "../pages/authentication/ForgetPass/ForgetPassword";
 import Coverage from "../pages/Coverage/Coverage";
+import PrivateRoute from "../routes/PrivateRoute";
+import SendPercel from "../pages/sendPercel/SendPercel";
 
 
 export const router = createBrowserRouter([
@@ -22,6 +24,13 @@ export const router = createBrowserRouter([
       {
         path: "coverage",
         Component: Coverage,
+        loader: ()=> fetch("./servicecenter.json")
+      },
+      {
+        path : "send-parcel",
+        element: <PrivateRoute>
+          <SendPercel></SendPercel>
+        </PrivateRoute>,
         loader: ()=> fetch("./servicecenter.json")
       }
     ]
