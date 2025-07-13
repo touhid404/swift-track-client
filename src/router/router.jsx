@@ -11,6 +11,8 @@ import Coverage from "../pages/Coverage/Coverage";
 import PrivateRoute from "../routes/PrivateRoute";
 import SendPercel from "../pages/sendParcel/SendParcel";
 import DashboardLayout from "../layouts/DashboardLayout";
+import MyParcels from "../pages/Dashboard/MyParcels/MyParcels";
+import ParcelDetailsCard from "../pages/Dashboard/ParcelsDetailsCard/ParcelDetailsCard";
 
 
 export const router = createBrowserRouter([
@@ -61,8 +63,14 @@ export const router = createBrowserRouter([
     </PrivateRoute>,
     children:[
       {
-        path: "",
+        path: "my-parcels",
+        Component: MyParcels,
         
+      },
+      {
+        path: "parcel-details/:id",
+        Component: ParcelDetailsCard,
+        loader: ({params}) => fetch(`http://localhost:3000/parcels/${params.id}`)
       }
     ]
   }
