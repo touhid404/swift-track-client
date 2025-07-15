@@ -36,7 +36,7 @@ const NavBar = () => {
        <NavLink className='ml-3 a' to='/about'>About us</NavLink>
     </>
     return (
-        <div className="navbar shadow-lg bg-transparent px-4 border border-lime-300  rounded-xl">
+        <div className="navbar shadow-lg bg-transparent px-4 border border-lime-300 mt-1 rounded-xl">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">

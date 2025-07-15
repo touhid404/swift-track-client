@@ -1,6 +1,7 @@
 import { useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
 import Alert from '../../shared/alert/Alert';
+import useAxios from '../../../hooks/useAxios';
 
 const SocialLogin = () => {
     const {signInWithGoogle} = useAuth();
@@ -8,11 +9,26 @@ const SocialLogin = () => {
   const navigate = useNavigate();
   const from = location.state?.from || '/';
 
+  const axiosInstance = useAxios();
+
     const handleGoogleSignIn = () => {
         signInWithGoogle()
-            .then((result) => {
+            .then(async(result) => {
                 navigate(from);
-                console.log("User signed in with Google:", result.user);
+                // console.log("User signed in with Google:", result.user);
+                  const userInfo = {
+                    fullName: result.user.displayName,
+                     email: result.user.email,
+                     profileImage: result.user.photoURL,
+                     role: "user" ,
+                     creationDate: new Date().toISOString(),
+                     lastLogin: new Date().toISOString()
+                  }
+
+                  
+                  const userRes = await axiosInstance.post('/users', userInfo);
+                  console.log(userRes)
+
             })
             .catch((error) => {
                 Alert('error', 'Google sign-in failed', error.message || 'Unknown error');
