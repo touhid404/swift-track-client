@@ -5,12 +5,12 @@ import Footer from '../pages/shared/Footer/Footer';
 
 const rootLayout = () => {
     return (
-            <div className='max-w-[1400px] mx-auto'>
-            <header>
+            <div className='max-w-[1400px] mx-auto scroll-smooth'>
+            <header className='sticky top-1.5 bg-transparent z-50 backdrop-blur-lg'>
                 <NavBar></NavBar>
             </header>
             {/* Main sections */}
-            <main>
+            <main className='md:px-2.5'>
                 <Outlet></Outlet>
             </main>
             <footer>

@@ -39,7 +39,7 @@ const Coverage = () => {
           We deliver almost all over Bangladesh
         </h2>
 
-        <div className="overflow-hidden rounded-lg border border-gray-300">
+        <div className="overflow-hidden  rounded-lg border border-gray-300">
           <BangladeshMap
             serviceCenters={serviceCenters}
             searchDistrict={searchDistrict}
