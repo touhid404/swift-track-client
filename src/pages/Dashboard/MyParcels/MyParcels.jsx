@@ -51,31 +51,7 @@ const MyParcels = () => {
     });
   };
 
-  const handlePayNow = (parcel) => {
-    Alert('info', 'Payment in progress Thnk you for your patience!');
-
-    console.log('Pay Now:', parcel);
-    // Swal.fire({
-    //   title: 'Proceed to Payment?',
-    //   text: `Parcel: ${parcel.parcelName} | Cost: ৳${parcel.deliveryCost}`,
-    //   icon: 'question',
-    //   showCancelButton: true,
-    //   confirmButtonText: 'Yes, Pay Now',
-    //   cancelButtonText: 'Cancel'
-    // }).then(async (result) => {
-    //   if (result.isConfirmed) {
-    //     try {
-    //       await axiosSecure.patch(`/parcels/pay/${parcel._id}`, {
-    //         paymentStatus: 'paid'
-    //       });
-    //       Swal.fire('Payment Successful!', 'Your payment is now confirmed.', 'success');
-    //       refetch();
-    //     } catch (err) {
-    //       Swal.fire('Error', 'Payment failed.', 'error');
-    //     }
-    //   }
-    // });
-  };
+ 
 
   return (
     <div className="p-4">
@@ -88,7 +64,7 @@ const MyParcels = () => {
         <th className="px-5 py-3 text-left">#</th>
         <th className="px-5 py-3 text-left">Parcel Name</th>
         <th className="px-5 py-3 text-left">Weight</th>
-        <th className="px-5 py-3 text-left">Cost</th>
+        <th className="px-5 py-3 text-left">Cost(Tk)</th>
         <th className=" px-5 py-3 text-left">Delivery Status</th>
         <th className="px-5 py-3 text-left">Payment</th>
         <th className="px-5 py-3 text-left">Created</th>
@@ -108,7 +84,7 @@ const MyParcels = () => {
             <td className="px-5 py-3">{index + 1}</td>
             <td className="px-5 py-3 font-medium">{parcel.parcelName}</td>
             <td className="px-5 py-3">{parcel.parcelWeight} kg</td>
-            <td className="px-5 py-3">৳{parcel.deliveryCost}</td>
+            <td className="px-5 py-3">{parcel.deliveryCost}</td>
             <td className="px-5 py-3 capitalize">
               <span className="inline-block bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-medium">
                 {parcel.deliveryStatus}
@@ -116,8 +92,8 @@ const MyParcels = () => {
             </td>
             <td className="px-5 py-3 capitalize">
               <span className={`inline-block px-2 py-1 rounded text-xs font-semibold ${
-                parcel.paymentStatus === 'Paid'
-                  ? 'bg-green-100 text-green-700'
+                parcel.paymentStatus === 'paid'
+                  ? 'bg-green-100 text-green-700 px-4'
                   : 'bg-red-100 text-red-700'
               }`}>
                 {parcel.paymentStatus}
@@ -144,12 +120,13 @@ const MyParcels = () => {
     Delete
   </button>
   {parcel.paymentStatus === 'unpaid' && (
-    <button
+    <Link to={`/dashboard/payment/${parcel._id}`}>
+     <button
       className="px-3 py-1 bg-purple-100 text-purple-700 text-xs font-semibold rounded-md hover:bg-purple-200 transition"
-      onClick={() => handlePayNow(parcel)}
     >
       Pay Now
     </button>
+    </Link>
   )}
 </td>
 

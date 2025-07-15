@@ -1,14 +1,21 @@
+import { useLocation, useNavigate } from 'react-router';
 import useAuth from '../../../hooks/useAuth';
+import Alert from '../../shared/alert/Alert';
 
 const SocialLogin = () => {
     const {signInWithGoogle} = useAuth();
+    const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from || '/';
 
     const handleGoogleSignIn = () => {
         signInWithGoogle()
             .then((result) => {
+                navigate(from);
                 console.log("User signed in with Google:", result.user);
             })
             .catch((error) => {
+                Alert('error', 'Google sign-in failed', error.message || 'Unknown error');
                 console.error("Error signing in with Google:", error);
             });
     };

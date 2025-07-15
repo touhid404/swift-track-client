@@ -2,49 +2,70 @@ import React from 'react';
 import { useLoaderData } from 'react-router';
 
 const ParcelDetailsCard = () => {
+  const parcel = useLoaderData();
 
-    const parcel = useLoaderData();
   return (
-    <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-6 border border-gray-200 mt-6">
-      <h2 className="text-2xl font-bold text-gray-800 mb-4">📦 Parcel Details</h2>
+    <main className="min-h-screen bg-gray-50 py-12 px-6 sm:px-12 lg:px-24">
+      <div className="max-w-5xl mx-auto bg-white rounded-xl shadow-xl border border-gray-300 p-10">
+        <header className="mb-10 text-center">
+          <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight">
+            Parcel Details
+          </h1>
+          <p className="mt-2 text-gray-600 text-lg">
+            Tracking ID: <span className="font-mono text-indigo-600">{parcel.trackingId}</span>
+          </p>
+        </header>
 
-      {/* Basic Info */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-        <div>
-          <p><span className="font-semibold text-gray-600">Tracking ID:</span> {parcel.trackingId}</p>
-          <p><span className="font-semibold text-gray-600">Parcel Type:</span> {parcel.parcelType}</p>
-          <p><span className="font-semibold text-gray-600">Parcel Name:</span> {parcel.parcelName}</p>
-          <p><span className="font-semibold text-gray-600">Weight:</span> {parcel.parcelWeight} kg</p>
-          <p><span className="font-semibold text-gray-600">Delivery Cost:</span> ৳{parcel.deliveryCost}</p>
-          <p><span className="font-semibold text-gray-600">Status:</span> <span className="capitalize">{parcel.deliveryStatus}</span></p>
-          <p><span className="font-semibold text-gray-600">Payment:</span> <span className="capitalize">{parcel.paymentStatus}</span></p>
-          <p><span className="font-semibold text-gray-600">Created:</span> {new Date(parcel.creationDate).toLocaleString()}</p>
-        </div>
+        <section className="grid grid-cols-1 md:grid-cols-3 gap-10 text-gray-700 text-base leading-relaxed">
+          {/* Basic Info */}
+          <div>
+            <h2 className="text-xl font-semibold mb-4 border-b border-gray-200 pb-2 text-gray-900">
+              📦 Basic Information
+            </h2>
+            <ul className="space-y-3">
+              <li><strong>Parcel Type:</strong> {parcel.parcelType}</li>
+              <li><strong>Parcel Name:</strong> {parcel.parcelName}</li>
+              <li><strong>Weight:</strong> {parcel.parcelWeight} kg</li>
+              <li><strong>Delivery Cost:</strong> ৳{parcel.deliveryCost}</li>
+              <li><strong>Status:</strong> <span className="capitalize">{parcel.deliveryStatus}</span></li>
+              <li><strong>Payment:</strong> <span className="capitalize">{parcel.paymentStatus}</span></li>
+              <li><strong>Created At:</strong> {new Date(parcel.creationDate).toLocaleString()}</li>
+            </ul>
+          </div>
 
-        {/* Sender */}
-        <div>
-          <h3 className="font-semibold text-gray-700 mb-1">🧍 Sender Info</h3>
-          <p><span className="font-semibold">Name:</span> {parcel.senderName}</p>
-          <p><span className="font-semibold">Email:</span> {parcel.senderEmail}</p>
-          <p><span className="font-semibold">Contact:</span> {parcel.senderContact}</p>
-          <p><span className="font-semibold">Region:</span> {parcel.senderRegion}</p>
-          <p><span className="font-semibold">Warehouse:</span> {parcel.senderWarehouse}</p>
-          <p><span className="font-semibold">Address:</span> {parcel.senderAddress}</p>
-          <p><span className="font-semibold">Instruction:</span> {parcel.pickupInstruction || 'N/A'}</p>
-        </div>
+          {/* Sender Info */}
+          <div>
+            <h2 className="text-xl font-semibold mb-4 border-b border-gray-200 pb-2 text-gray-900">
+              🧍 Sender Information
+            </h2>
+            <ul className="space-y-3">
+              <li><strong>Name:</strong> {parcel.senderName}</li>
+              <li><strong>Email:</strong> {parcel.senderEmail}</li>
+              <li><strong>Contact:</strong> {parcel.senderContact}</li>
+              <li><strong>Region:</strong> {parcel.senderRegion}</li>
+              <li><strong>Warehouse:</strong> {parcel.senderWarehouse}</li>
+              <li><strong>Address:</strong> {parcel.senderAddress}</li>
+              <li><strong>Pickup Instruction:</strong> {parcel.pickupInstruction || 'N/A'}</li>
+            </ul>
+          </div>
 
-        {/* Receiver */}
-        <div>
-          <h3 className="font-semibold text-gray-700 mb-1">📍 Receiver Info</h3>
-          <p><span className="font-semibold">Name:</span> {parcel.receiverName}</p>
-          <p><span className="font-semibold">Contact:</span> {parcel.receiverContact}</p>
-          <p><span className="font-semibold">Region:</span> {parcel.receiverRegion}</p>
-          <p><span className="font-semibold">Warehouse:</span> {parcel.receiverWarehouse}</p>
-          <p><span className="font-semibold">Address:</span> {parcel.receiverAddress}</p>
-          <p><span className="font-semibold">Instruction:</span> {parcel.deliveryInstruction || 'N/A'}</p>
-        </div>
+          {/* Receiver Info */}
+          <div>
+            <h2 className="text-xl font-semibold mb-4 border-b border-gray-200 pb-2 text-gray-900">
+              📍 Receiver Information
+            </h2>
+            <ul className="space-y-3">
+              <li><strong>Name:</strong> {parcel.receiverName}</li>
+              <li><strong>Contact:</strong> {parcel.receiverContact}</li>
+              <li><strong>Region:</strong> {parcel.receiverRegion}</li>
+              <li><strong>Warehouse:</strong> {parcel.receiverWarehouse}</li>
+              <li><strong>Address:</strong> {parcel.receiverAddress}</li>
+              <li><strong>Delivery Instruction:</strong> {parcel.deliveryInstruction || 'N/A'}</li>
+            </ul>
+          </div>
+        </section>
       </div>
-    </div>
+    </main>
   );
 };
 

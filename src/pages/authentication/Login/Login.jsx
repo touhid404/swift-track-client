@@ -1,9 +1,17 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import SocialLogin from '../social/SocialLogin';
+import useAuth from '../../../hooks/useAuth';
+import Alert from '../../shared/alert/Alert';
 
 const Login = () => {
+
+  const {signInUser} = useAuth();
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from || '/';
   const {
     register,
     handleSubmit,
@@ -11,7 +19,16 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    signInUser(data.email, data.password)
+      .then(() => {
+        // Handle successful login
+        navigate(from);
+      })
+      .catch((error) => {
+        // Handle login errors
+        console.error("Login error:", error);
+        Alert('error', 'Login failed', error.message || 'Unknown error');
+      });
   };
 
   const inputClass =

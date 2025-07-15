@@ -13,6 +13,9 @@ import SendPercel from "../pages/sendParcel/SendParcel";
 import DashboardLayout from "../layouts/DashboardLayout";
 import MyParcels from "../pages/Dashboard/MyParcels/MyParcels";
 import ParcelDetailsCard from "../pages/Dashboard/ParcelsDetailsCard/ParcelDetailsCard";
+import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import TrackPackage from "../pages/Dashboard/TrackPackage/TrackPackage";
 
 
 export const router = createBrowserRouter([
@@ -71,6 +74,18 @@ export const router = createBrowserRouter([
         path: "parcel-details/:id",
         Component: ParcelDetailsCard,
         loader: ({params}) => fetch(`http://localhost:3000/parcels/${params.id}`)
+      },
+      {
+        path: "payment/:parcelId",
+        Component: Payment,
+      },
+      {
+        path:'payment-history',
+        Component: PaymentHistory,
+      },
+      {
+        path: "tracking",
+        Component: TrackPackage
       }
     ]
   }

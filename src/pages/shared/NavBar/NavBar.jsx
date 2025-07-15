@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router';
 import SwiftTrackLogo from '../swiftTrackLogo/SwiftTrackLogo';
 import useAuth from '../../../hooks/useAuth';
 import './Navbar.css'
+import Alert from '../alert/Alert';
 
 const NavBar = () => {
 
@@ -10,6 +11,7 @@ const NavBar = () => {
   const handleLogout = ()=>{
     signOutUser()
       .then(() => {
+        Alert('success', 'Logged out successfully');
         // Handle successful logout
       })
       .catch((error) => {
@@ -29,9 +31,8 @@ const NavBar = () => {
         user && <NavLink className='ml-3 a' to='/dashboard'>Dashboard</NavLink>
 
        }
-       {
-        user &&  <NavLink className='ml-3 a' to='/send-parcel'>Send parcel</NavLink>
-       }
+      <NavLink className='ml-3 a' to='/send-parcel'>Send parcel</NavLink>
+       
        <NavLink className='ml-3 a' to='/about'>About us</NavLink>
     </>
     return (

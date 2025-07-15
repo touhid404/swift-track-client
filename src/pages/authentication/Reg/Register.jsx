@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { useForm } from 'react-hook-form';
 import useAuth from './../../../hooks/useAuth';
 import SocialLogin from '../social/SocialLogin';
+import Alert from '../../shared/alert/Alert';
 
 const Register = () => {
 
@@ -17,9 +18,11 @@ const Register = () => {
   const onSubmit = (data) => {
     createUser(data.email, data.password)
       .then(() => {
+        Alert('success', 'User created successfully');
        console.log("User created successfully:", data.email);
       })
       .catch((error) => {
+        Alert('error', 'User creation failed', error.message || 'Unknown error');
         console.error("Error creating user:", error);
       });
     console.log(data);
