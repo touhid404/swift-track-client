@@ -16,6 +16,10 @@ import ParcelDetailsCard from "../pages/Dashboard/ParcelsDetailsCard/ParcelDetai
 import Payment from "../pages/Dashboard/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 import TrackParcels from "../pages/Dashboard/TrackParcels/TrackParcels";
+import BeARider from "../pages/BeARider/BeARider";
+import ActiveRiders from "../pages/Dashboard/ActiveRiders/ActiveRiders";
+import PendingRiders from "../pages/Dashboard/PendingRiders/PendingRiders";
+import MakeAdmin from "../pages/Dashboard/MakeAdmin/MakeAdmin";
 
 
 export const router = createBrowserRouter([
@@ -36,6 +40,13 @@ export const router = createBrowserRouter([
         path : "send-parcel",
         element: <PrivateRoute>
           <SendPercel></SendPercel>
+        </PrivateRoute>,
+        loader: ()=> fetch("./servicecenter.json")
+      },
+      {
+        path: 'be-a-rider',
+        element: <PrivateRoute>
+          <BeARider></BeARider>
         </PrivateRoute>,
         loader: ()=> fetch("./servicecenter.json")
       }
@@ -86,6 +97,19 @@ export const router = createBrowserRouter([
       {
         path: "tracking",
         Component: TrackParcels
+      },
+      {
+        path : 'active-riders',
+        Component: ActiveRiders
+      },
+      {
+        path: 'pending-riders',
+        Component: PendingRiders
+      },
+      {
+         path: 'make-admin',
+         Component: MakeAdmin
+
       }
     ]
   }

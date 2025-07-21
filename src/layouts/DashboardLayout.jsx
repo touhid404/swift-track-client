@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router';
 import SwiftTrackLogo from '../pages/shared/swiftTrackLogo/SwiftTrackLogo';
 import { AiFillHome } from 'react-icons/ai';
-import { FaBoxOpen, FaHistory, FaUserEdit } from 'react-icons/fa';
+import { FaBoxOpen, FaHistory, FaUserEdit ,FaUserCheck, FaUserClock, FaDailymotion} from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
 const DashboardLayout = () => {
     return (
@@ -71,6 +71,25 @@ const DashboardLayout = () => {
                         <NavLink to="/dashboard/profile" className="flex items-center gap-3">
                             <FaUserEdit className="text-xl" />
                             Update Profile
+                        </NavLink>
+                    </li>
+                    {/* New Rider Management Links */}
+                    <li>
+                        <NavLink to="/dashboard/active-riders" className="flex items-center gap-3">
+                            <FaUserCheck className="text-xl" />
+                            Active Riders
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/pending-riders" className="flex items-center gap-3">
+                            <FaUserClock className="text-xl" />
+                            Pending Riders
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/dashboard/make-admin" className="flex items-center gap-3">
+                            <FaDailymotion className="text-xl" />
+                            Make Admin
                         </NavLink>
                     </li>
                 </ul>

@@ -27,10 +27,12 @@ const NavBar = () => {
     const links = <>
        <NavLink className='ml-3 a' to='/'>Home</NavLink>
        <NavLink className='ml-3 a' to='/coverage'>Coverage</NavLink>
+    
        {
         user && <NavLink className='ml-3 a' to='/dashboard'>Dashboard</NavLink>
 
        }
+          <NavLink className='ml-3 a' to='/be-a-rider'>Be a Rider</NavLink>
       <NavLink className='ml-3 a' to='/send-parcel'>Send parcel</NavLink>
        
        <NavLink className='ml-3 a' to='/about'>About us</NavLink>
