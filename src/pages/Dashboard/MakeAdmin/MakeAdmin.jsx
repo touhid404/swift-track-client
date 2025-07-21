@@ -4,7 +4,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { FaSearch, FaUserShield, FaUserTimes } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-
+import { format } from 'date-fns';
 const MakeAdmin = () => {
     const axiosSecure = useAxiosSecure();
     const [emailQuery, setEmailQuery] = useState("");
@@ -89,7 +89,7 @@ const MakeAdmin = () => {
                             {users.map((u) => (
                                 <tr key={u._id}>
                                     <td>{u.email}</td>
-                                    <td>{new Date(u.created_at).toLocaleDateString()}</td>
+                                    <td>{format(new Date(u.creationDate), 'dd MMM yyyy, hh:mm a')}</td>
                                     <td>
                                         <span
                                             className={`badge ${u.role === "admin" ? "badge-success" : "badge-ghost"

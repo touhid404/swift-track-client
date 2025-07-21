@@ -2,9 +2,13 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router';
 import SwiftTrackLogo from '../pages/shared/swiftTrackLogo/SwiftTrackLogo';
 import { AiFillHome } from 'react-icons/ai';
-import { FaBoxOpen, FaHistory, FaUserEdit ,FaUserCheck, FaUserClock, FaDailymotion} from 'react-icons/fa';
+import { FaBoxOpen, FaHistory, FaUserEdit ,FaUserCheck, FaUserClock, FaDailymotion, FaAsterisk} from 'react-icons/fa';
 import { MdLocalShipping } from 'react-icons/md';
+import useUserRole from '../hooks/useUserRole';
 const DashboardLayout = () => {
+
+
+    const {role,roleLoading} = useUserRole();
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -74,7 +78,11 @@ const DashboardLayout = () => {
                         </NavLink>
                     </li>
                     {/* New Rider Management Links */}
-                    <li>
+                    {
+
+                        !roleLoading && role ==="admin" &&
+                        <>
+                        <li>
                         <NavLink to="/dashboard/active-riders" className="flex items-center gap-3">
                             <FaUserCheck className="text-xl" />
                             Active Riders
@@ -86,12 +94,22 @@ const DashboardLayout = () => {
                             Pending Riders
                         </NavLink>
                     </li>
+
+                    {/* Admin  */}
                     <li>
                         <NavLink to="/dashboard/make-admin" className="flex items-center gap-3">
                             <FaDailymotion className="text-xl" />
                             Make Admin
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/dashboard/assign-rider" className="flex items-center gap-3">
+                            <FaAsterisk className="text-xl" />
+                            Assign Rider
+                        </NavLink>
+                    </li>
+                        </>
+                    }
                 </ul>
             </div>
         </div>

@@ -17,6 +17,9 @@ const useAxiosSecure = () => {
   },error =>{
     return Promise.reject(error);
   })
+
+
+  
    return axiosSecure;
 };
 
